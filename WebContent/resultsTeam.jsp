@@ -93,19 +93,19 @@
      
      
 <h3>NBA Players</h3><br>
-${ballerslist }
+<!--   ${ballersresult }     for later use!!     -->
 	<c:choose>
-		<c:when test="${! empty sessionScope.ballerslist}">
+		<c:when test="${! empty sessionScope.ballersresult}">
 			<ul>
-			<c:forEach items="${ballerslist}" var="s">
-				<li>${sessionScope.s.name}</li>
-				<li>${sessionScope.s.team}</li>
-				<li>${sessionScope.s.position}</li>
-				<li>${sessionScope.s.ppg} points per game</li>
-				<li>${sessionScope.s.rpg} rebounds per game</li>
-				<li>${sessionScope.s.apg} assists per game</li>
-				<li>${sessionScope.s.fieldgoalpercentage} Field Goal %</li>
-				<li>${sessionScope.s.salary} dollars annually</li>
+			<c:forEach items="${ballersresult}" var="s">
+				<li>${s.name}</li>
+				<li>${s.team}</li>
+				<li>${s.position}</li>
+				<li>${s.ppg} points per game</li>
+				<li>${s.rpg} rebounds per game</li>
+				<li>${s.apg} assists per game</li>
+				<li>${s.fieldgoalpercentage} Field Goal %</li>
+				<li>${s.salary} dollars annually</li>
 			</c:forEach>
 			</ul>
 		</c:when>

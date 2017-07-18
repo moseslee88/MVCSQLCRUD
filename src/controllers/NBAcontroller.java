@@ -42,8 +42,7 @@ public class NBAcontroller {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("resultsTeam.jsp");
                   //		mv.addObject("player", nbaDao.getBallerByName(n));
-			      //session.setAttribute("ballers2", nbaDao.getBallerByTeam(n)); 	
-		session.setAttribute("ballerslist", nbaDao.getBallerByTeam(n)); 	
+		session.setAttribute("ballersresult", nbaDao.getBallerByTeam(n)); 	
 		return mv;
 	}
 		
