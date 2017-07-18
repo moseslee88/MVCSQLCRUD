@@ -59,6 +59,9 @@ public class NBAplayersFileDAO implements BallerDAO {
 	}
 
 	
+	
+
+	
 
 	@Override
 	public void addNBAballPlayer(Baller baller) {
@@ -71,12 +74,17 @@ public class NBAplayersFileDAO implements BallerDAO {
 		 for (Baller ball : nbaplayers) {
 			if (ball.getName().equals(baller.getName())) {
 				b=ball;
+				nbaplayers.remove(b);
 				break;
 			}
 		}
-		 nbaplayers.remove(baller);
 		 persistThing(nbaplayers);
 	}
+	
+	
+
+
+	
 	
 	public List<Baller> getNBAballers(){
 		return nbaplayers;
@@ -95,6 +103,7 @@ public class NBAplayersFileDAO implements BallerDAO {
 	            	id++;
 	            	out.println(id+ "," + baller.getName()+","+baller.getTeam()+","+baller.getPosition()+","+baller.getPpg()+","+baller.getRpg()+","+baller.getApg()+","+baller.getFieldgoalpercentage()+","+baller.getSalary());
 				}
+	            out.close();
 	        }
 	        catch(Exception e){	
 	        	e.getMessage();

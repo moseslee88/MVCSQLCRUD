@@ -47,6 +47,17 @@ public class NBAcontroller {
 		return mv;
 	}
 		
+		@RequestMapping(path="GetAllNBAPlayer.do", 
+				params="name",
+				method=RequestMethod.GET)
+		public ModelAndView getAllName(@RequestParam("name") String n, HttpSession session) {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("viewAll.jsp");
+			//mv.addObject("baller", nbaDao.getBallerByName(n));
+			session.setAttribute("allballer", nbaDao.getNBAballers());
+			return mv;      
+		}
+		
 		@RequestMapping(path="AddPlayer.do", 
 				params={"name","team","position", "ppg", "rpg", "apg", "fieldgoalpercentage", "salary"},
 				method=RequestMethod.POST)
@@ -66,17 +77,31 @@ public class NBAcontroller {
 public ModelAndView gotBallPlayerandAddtoList(Baller baller) {
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("resultslist.jsp");
-			mv.addObject("balerlist", nbaDao.getNBAballers());
+			mv.addObject("ballerlist", nbaDao.getNBAballers());
 			return mv;
 }
 		
 		
 		
 		//here i do the mapping to delete an NBA Player
-		@RequestMapping(path = "PlayerDeleted.do", params = "VerifyDelete", method = RequestMethod.POST)
+		/* @RequestMapping(path = "PlayerDeleted.do", params = "VerifyDelete", method = RequestMethod.POST)
 		public ModelAndView deleteFromList(@RequestParam("VerifyDelete") String n, Baller baller, RedirectAttributes redir, HttpSession session) {
+			nbaDao.getNBAballers();
 			nbaDao.deleteNBAballPlayer(baller);
 
+			ModelAndView mv = new ModelAndView();
+			redir.addFlashAttribute("ballerlist", nbaDao.getNBAballers());
+			mv.setViewName("redirect:PlayerAdded.do");
+			//redir.addFlashAttribute("removed", removed);
+			return mv;
+			
+		}   */
+		
+		@RequestMapping(path = "PlayerDeleted.do", params = {"name","team","position", "ppg", "rpg", "apg", "fieldgoalpercentage", "salary"}, method = RequestMethod.POST)
+		public ModelAndView deleteFromList(@RequestParam("name") String a, @RequestParam("team") String b, @RequestParam("position") String c, @RequestParam("ppg") String d, @RequestParam("rpg") String e, @RequestParam("apg") String f, @RequestParam("fieldgoalpercentage") String g, @RequestParam("salary") String h, Baller baller, RedirectAttributes redir, HttpSession session) {
+			nbaDao.getNBAballers();
+			nbaDao.deleteNBAballPlayer(baller);
+			
 			ModelAndView mv = new ModelAndView();
 			redir.addFlashAttribute("ballerlist", nbaDao.getNBAballers());
 			mv.setViewName("redirect:PlayerAdded.do");
@@ -86,3 +111,5 @@ public ModelAndView gotBallPlayerandAddtoList(Baller baller) {
 		}
 		
 }
+		
+

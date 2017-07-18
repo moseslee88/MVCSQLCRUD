@@ -23,21 +23,39 @@
 
 
 <!--   <p>The result is: ${result}.0</p>  
-<p>The result is: ${ball.name}.</p> -->
-<h3>NBA Players</h3><br>
+<p>The result is: ${ball.name}.       
+
+
 ${ballerlist }
+</p> -->
+
+
+
+
+
+
+
+
+
+
+<h3>NBA Players</h3><br>
+
 	<c:choose>
 		<c:when test="${! empty ballerlist}">
+			<c:forEach var="baller" items="${ballerlist}">
 			<ul>
-				<li>${ballerlist.name}</li>
-				<li>${ballerlist.team}</li>
-				<li>${ballerlist.position}</li>
-				<li>${ballerlist.ppg} points per game</li>
-				<li>${ballerlist.rpg} rebounds per game</li>
-				<li>${ballerlist.apg} assists per game</li>
-				<li>${ballerlist.fieldgoalpercentage} Field Goal %</li>
-				<li>${ballerlist.salary} dollars annually</li>
+				<li>${baller.name}</li>
+				<li>${baller.team}</li>
+				<li>${baller.position}</li>
+				<li>${baller.ppg} points per game</li>
+				<li>${baller.rpg} rebounds per game</li>
+				<li>${baller.apg} assists per game</li>
+				<li>${baller.fieldgoalpercentage} Field Goal %</li>
+				<li>${baller.salary} dollars annually</li>
 			</ul>
+			<br>
+			<br>
+			</c:forEach>
 		</c:when>
 		<c:otherwise>
 			<p>No Player found</p>
@@ -48,8 +66,6 @@ ${ballerlist }
 
   
 			
-			</div>
-			
-			
+</div>			
 </body>
 </html>

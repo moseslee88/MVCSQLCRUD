@@ -92,22 +92,29 @@
      </c:forEach>  -->
      
      
-     
-		<c:forEach items="${ballerslist}" var="ball" varStatus="status">
-<tr>
-    <td>${ball.name}</td>
-    <td>${ball.team}</td>
-    <td>${ball.position}</td>
-    <td>${ball.ppg}</td>
-    <td>${ball.rpg}</td>
-    <td>${ball.apg}</td>
-    <td>${ball.fieldgoalpercentage}</td>
-    <td>${ball.salary}</td>
-
-</tr>
-
-     <br/>
-     </c:forEach>
+<h3>NBA Players</h3><br>
+${ballerslist }
+	<c:choose>
+		<c:when test="${! empty sessionScope.ballerslist}">
+			<ul>
+			<c:forEach items="${ballerslist}" var="s">
+				<li>${sessionScope.s.name}</li>
+				<li>${sessionScope.s.team}</li>
+				<li>${sessionScope.s.position}</li>
+				<li>${sessionScope.s.ppg} points per game</li>
+				<li>${sessionScope.s.rpg} rebounds per game</li>
+				<li>${sessionScope.s.apg} assists per game</li>
+				<li>${sessionScope.s.fieldgoalpercentage} Field Goal %</li>
+				<li>${sessionScope.s.salary} dollars annually</li>
+			</c:forEach>
+			</ul>
+		</c:when>
+		<c:otherwise>
+			<p>No Player found</p>
+		</c:otherwise>
+	</c:choose>
+	
+	
 
 
 

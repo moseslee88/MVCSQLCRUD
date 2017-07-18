@@ -11,13 +11,12 @@
   </head>
   <body>
   <h1>List of NBA Players</h1><br>
-    
-    
-    ${ballerslist}
+
+<!--   ${allballer}   use this later-->
   
-   <form action="PlayerDeleted.do" method="POST">
-      <input type="text" name="VerifyDelete" placeholder="Enter player you wish to delete here!"/><br />
-      <input type="submit" value="delete Player!"/><br />
+   <form action="GetAllNBAPlayer.do" method="GET">
+      <input type="text" name="name" placeholder="Enter any letter to see List!"/><br />
+      <input type="submit" value="List Players!"/><br />
     </form>
     
     </body>

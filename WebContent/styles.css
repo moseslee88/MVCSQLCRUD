@@ -5,6 +5,7 @@
 body {
 	background-color: #0000ff;  <!--blue, my fav color -->
 	font-family: sans-serif;
+
 	background-image: url("https://uproxx.files.wordpress.com/2017/05/nba-feat.jpg?quality=100&w=650");
 	min-height: 100%;
 	background-repeat: no-repeat;
@@ -100,7 +101,7 @@ body {
  color: #cc0001;
  border: 1px solid orange;
  position: relative;
-    top:180px;
+    top:210px;
 }
 .bounce p {
  position: absolute;
