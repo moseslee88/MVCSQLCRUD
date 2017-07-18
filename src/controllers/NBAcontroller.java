@@ -29,7 +29,7 @@ public class NBAcontroller {
 		mv.setViewName("resultsfun.jsp");
 		//mv.addObject("baller", nbaDao.getBallerByName(n));
 		session.setAttribute("baller", nbaDao.getBallerByName(n));
-		return mv;
+		return mv;      
 	}
 	
 	
