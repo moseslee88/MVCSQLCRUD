@@ -76,18 +76,35 @@
 		<c:otherwise>
 			<p>No Player found</p>
 		</c:otherwise>
-	</c:choose> -->
+	</c:choose> 
 	
 		<c:forEach items="${ballerslist}" var="ball" varStatus="status">
      <c:out value="${ballerslist.name}"/> 
      <c:out value="${ballerslist.team}"/>  
-     <c:out value="${ballerslist.team}"/>
      <c:out value="${ballerslist.position}"/>
      <c:out value="${ballerslist.ppg}"/>
      <c:out value="${ballerslist.rpg}"/>
      <c:out value="${ballerslist.apg}"/>
      <c:out value="${ballerslist.fieldgoalpercentage}"/>
      <c:out value="${ballerslist.salary}"/>
+
+     <br/>
+     </c:forEach>  -->
+     
+     
+     
+		<c:forEach items="${ballerslist}" var="ball" varStatus="status">
+<tr>
+    <td>${ball.name}</td>
+    <td>${ball.team}</td>
+    <td>${ball.position}</td>
+    <td>${ball.ppg}</td>
+    <td>${ball.rpg}</td>
+    <td>${ball.apg}</td>
+    <td>${ball.fieldgoalpercentage}</td>
+    <td>${ball.salary}</td>
+
+</tr>
 
      <br/>
      </c:forEach>
