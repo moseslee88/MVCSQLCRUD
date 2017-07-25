@@ -6,14 +6,14 @@ public interface BallerDAO {
 	public Baller getBallerByName(String name);
 	public List<Baller> getBallerByTeam(String team);
 	public Baller getBallerByPosition(String position); 	
-	public Baller getBallerByPPG(String ppg);
-	public Baller getBallerByRPG(String rpg);
-	public Baller getBallerByAPG(String apg);
-	public Baller getBallerByFieldGoalPercentage(String fieldgoalpercentage);
-	public Baller getBallerBySalary(String salary);
+	public Baller getBallerByPPG(Double ppg);
+	public Baller getBallerByRPG(Double rpg);
+	public Baller getBallerByAPG(Double apg);
+	public Baller getBallerByFieldGoalPercentage(Double fieldgoalpercentage);
+	public Baller getBallerBySalary(Integer salary);
 
 	public void addNBAballPlayer(Baller baller);
 	public void deleteNBAballPlayer(Baller baller);
 	public List<Baller> getNBAballers();
-	public void persistThing(List<Baller> nbaplayers);
+	//public void persistThing(List<Baller> nbaplayers);
 }

@@ -16,7 +16,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 
-public class NBAplayersFileDAO implements BallerDAO {
+public abstract class NBAplayersFileDAO implements BallerDAO {
 	private static final String FILE_NAME="/WEB-INF/NBAplayers.csv";
 	private List<Baller> nbaplayers = new ArrayList<>();
 
@@ -37,16 +37,17 @@ public class NBAplayersFileDAO implements BallerDAO {
 			) {
 			String line = buf.readLine();
 			while ((line = buf.readLine()) != null) {
-				String[] tokens = line.split(",");
-				int id=Integer.parseInt(tokens[0]);
-				String name = tokens[1];
-				String team = tokens[2];
-				String position = tokens[3];
-				String ppg = tokens[4];
-				String rpg = tokens[5];
-				String apg = tokens[6];
-				String fieldgoalpercentage = tokens[7];
-				String salary = tokens[8];
+				Object[] tokens = line.split(",");
+				//int id=Integer.parseInt(tokens[0]);
+				int id=(Integer)tokens[0];
+				String name = (String) tokens[1];
+				String team = (String) tokens[2];
+				String position = (String) tokens[3];
+				Double ppg = (Double) tokens[4];
+				Double rpg = (Double) tokens[5];
+				Double apg = (Double) tokens[6];
+				Double fieldgoalpercentage = (Double) tokens[7];
+				Integer salary = (Integer) tokens[8];
 				Baller newBaller=new Baller(name, team, position, ppg, rpg, apg, fieldgoalpercentage, salary);
 						
 			nbaplayers.add(newBaller);;
@@ -61,7 +62,7 @@ public class NBAplayersFileDAO implements BallerDAO {
 	
 	
 
-	
+/***	
 
 	@Override
 	public void addNBAballPlayer(Baller baller) {
@@ -75,7 +76,7 @@ public class NBAplayersFileDAO implements BallerDAO {
 			if (ball.getName().equals(baller.getName())) {
 				b=ball;
 				nbaplayers.remove(b);
-				break;
+				break;  
 			}
 		}
 		 persistThing(nbaplayers);
@@ -129,7 +130,7 @@ public class NBAplayersFileDAO implements BallerDAO {
 	 
 
 
-	@Override
+    @Override
 	public List<Baller> getBallerByTeam(String team) {
 		List<Baller> ba = new ArrayList<Baller>();
 		for (Baller baller : nbaplayers) {
@@ -139,7 +140,7 @@ public class NBAplayersFileDAO implements BallerDAO {
 			}
 		}
 		return ba;
-	}
+	}  
 
 	@Override
 	public Baller getBallerByPosition(String position) {
@@ -211,6 +212,7 @@ public class NBAplayersFileDAO implements BallerDAO {
 			}
 		}
 		return ba;
-	}
+	} 
+	******/
 	        
 }

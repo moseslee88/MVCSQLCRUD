@@ -4,17 +4,17 @@ public class Baller {
 	private String name; 
 	private String team;
 	private String position;
-	private String ppg;
-	private String rpg;
-	private String apg;
-	private String fieldgoalpercentage;
-	private String salary;
+	private Double ppg;
+	private Double rpg;
+	private Double apg;
+	private Double fieldgoalpercentage;
+	private Integer salary;
 
 	public Baller() {
 	}
 
-	public Baller(String name, String team, String position, String ppg, String rpg, String apg,
-			String fieldgoalpercentage, String salary) {
+	public Baller(String name, String team, String position, Double ppg, Double rpg, Double apg,
+			Double fieldgoalpercentage, Integer salary) {
 		super();
 		this.name = name;
 		this.team = team;
@@ -25,7 +25,7 @@ public class Baller {
 		this.fieldgoalpercentage = fieldgoalpercentage;
 		this.salary = salary;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -50,43 +50,43 @@ public class Baller {
 		this.position = position;
 	}
 
-	public String getPpg() {
+	public Double getPpg() {
 		return ppg;
 	}
 
-	public void setPpg(String ppg) {
+	public void setPpg(Double ppg) {
 		this.ppg = ppg;
 	}
 
-	public String getRpg() {
+	public Double getRpg() {
 		return rpg;
 	}
 
-	public void setRpg(String rpg) {
+	public void setRpg(Double rpg) {
 		this.rpg = rpg;
 	}
 
-	public String getApg() {
+	public Double getApg() {
 		return apg;
 	}
 
-	public void setApg(String apg) {
+	public void setApg(Double apg) {
 		this.apg = apg;
 	}
 
-	public String getFieldgoalpercentage() {
+	public Double getFieldgoalpercentage() {
 		return fieldgoalpercentage;
 	}
 
-	public void setFieldgoalpercentage(String fieldgoalpercentage) {
+	public void setFieldgoalpercentage(Double fieldgoalpercentage) {
 		this.fieldgoalpercentage = fieldgoalpercentage;
 	}
 
-	public String getSalary() {
+	public Integer getSalary() {
 		return salary;
 	}
 
-	public void setSalary(String salary) {
+	public void setSalary(Integer salary) {
 		this.salary = salary;
 	}
 

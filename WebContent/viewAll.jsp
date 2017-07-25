@@ -19,7 +19,7 @@
       <input type="submit" value="List Players!"/><br />
     </form>           -->
     
-    
+     
     
     <c:choose>
         <c:when test="${! empty allballer}">
@@ -53,7 +53,7 @@
         <c:otherwise>
         <p>No Player found</p>
         </c:otherwise>
-        </c:choose>     
+        </c:choose>    
     
     </body>
     
