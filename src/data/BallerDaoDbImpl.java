@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BallerDaoDbImpl implements BallerDAO {
+	
+	//public class NBAplayersFileDAO is now in CUSTOMERGUI under SpringWeb in package data
 	private static String url = "jdbc:mysql://localhost:3306/basketballdb";
 	private String user = "nbaballplayer";
 	private String pass = "nbaballplayer";
@@ -101,15 +103,71 @@ public class BallerDaoDbImpl implements BallerDAO {
 
 
 	@Override
-	public Baller getBallerByPosition(String position) {
-		// TODO Auto-generated method stub
-		return null;
+	public Baller getBallerByPosition(String positn) {
+	     Baller baller = null;
+	     try { 
+	    	 Connection conn = DriverManager.getConnection(url, user, pass);
+				conn.setAutoCommit(false);
+				String sql = "SELECT name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary FROM Player WHERE name = ?";
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setString(1, positn);
+				ResultSet rs = stmt.executeQuery();
+				if (rs.next()) {
+					String name = rs.getString(1);
+					String team = rs.getString(2);
+					String position = rs.getString(3);
+					Double ppg = rs.getDouble(4);
+					Double rpg = rs.getDouble(5);
+					Double apg = rs.getDouble(6);
+					Double fieldgoalpercentage = rs.getDouble(7);
+					Integer salary = rs.getInt(8);
+					
+					baller = new Baller(name, team, position, ppg, rpg, apg,
+							fieldgoalpercentage, salary);
+				}
+				rs.close();
+				stmt.close();
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		return baller;
 	}
 
 	@Override
-	public Baller getBallerByPPG(Double ppg) {
-		// TODO Auto-generated method stub
-		return null;
+	public Baller getBallerByPPG(Double ptspg) {
+	     Baller baller = null;
+	     try { 
+	    	 Connection conn = DriverManager.getConnection(url, user, pass);
+				conn.setAutoCommit(false);
+				String sql = "SELECT name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary FROM Player WHERE name = ?";
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setDouble(1, ptspg);
+				ResultSet rs = stmt.executeQuery();
+				if (rs.next()) {
+					String name = rs.getString(1);
+					String team = rs.getString(2);
+					String position = rs.getString(3);
+					Double ppg = rs.getDouble(4);
+					Double rpg = rs.getDouble(5);
+					Double apg = rs.getDouble(6);
+					Double fieldgoalpercentage = rs.getDouble(7);
+					Integer salary = rs.getInt(8);
+					
+					baller = new Baller(name, team, position, ppg, rpg, apg,
+							fieldgoalpercentage, salary);
+				}
+				rs.close();
+				stmt.close();
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		return baller;
 	}
 
 	@Override

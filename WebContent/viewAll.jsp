@@ -54,6 +54,8 @@
         <p>No Player found</p>
         </c:otherwise>
         </c:choose>    
+        
+        <h6> ${S}</h6>
     
     </body>
     

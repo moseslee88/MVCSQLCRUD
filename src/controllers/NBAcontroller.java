@@ -54,6 +54,9 @@ public class NBAcontroller {
 			mv.setViewName("viewAll.jsp");
 			//mv.addObject("baller", nbaDao.getBallerByName(n));
 			session.setAttribute("allballer", nbaDao.getNBAballers());
+			//added salutation
+			String s = "S\u00ED, Me Gusta Baloncesto Se\u00F1or";
+			session.setAttribute("S", s);
 			return mv;      
 		}
 		

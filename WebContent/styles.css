@@ -49,9 +49,10 @@ body {
   background: #3A68A1;
   color: #fee1cc;
   text-decoration: none;
-  padding: 8px 12px;
+  /* padding: 8px 12px; ***/
   text-decoration: none;
   font-size: larger;
+  margin-bottom:30px;  /*not in use  **/
 }
 
 .btn:hover {
@@ -72,7 +73,7 @@ body {
   background: #3A68A1;
   color: #fee1cc;
   text-decoration: none;
-  padding: 8px 12px;
+   /*   padding: 8px 12px;            **/
   text-decoration: none;
   font-size: larger;
 }
