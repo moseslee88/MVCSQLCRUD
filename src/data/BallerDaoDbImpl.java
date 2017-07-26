@@ -3,7 +3,6 @@ package data;
 import java.util.List;
 
 import com.mysql.jdbc.Statement;
-import com.skilldistillery.film.data.Film;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -171,32 +170,151 @@ public class BallerDaoDbImpl implements BallerDAO {
 	}
 
 	@Override
-	public Baller getBallerByRPG(Double rpg) {
-		// TODO Auto-generated method stub
-		return null;
+	public Baller getBallerByRPG(Double rebpg) {
+	     Baller baller = null;
+	     try { 
+	    	 Connection conn = DriverManager.getConnection(url, user, pass);
+				conn.setAutoCommit(false);
+				String sql = "SELECT name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary FROM Player WHERE name = ?";
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setDouble(1, rebpg);
+				ResultSet rs = stmt.executeQuery();
+				if (rs.next()) {
+					String name = rs.getString(1);
+					String team = rs.getString(2);
+					String position = rs.getString(3);
+					Double ppg = rs.getDouble(4);
+					Double rpg = rs.getDouble(5);
+					Double apg = rs.getDouble(6);
+					Double fieldgoalpercentage = rs.getDouble(7);
+					Integer salary = rs.getInt(8);
+					
+					baller = new Baller(name, team, position, ppg, rpg, apg,
+							fieldgoalpercentage, salary);
+				}
+				rs.close();
+				stmt.close();
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		return baller;
 	}
 
 	@Override
-	public Baller getBallerByAPG(Double apg) {
-		// TODO Auto-generated method stub
-		return null;
+	public Baller getBallerByAPG(Double assistpg) {
+	     Baller baller = null;
+	     try { 
+	    	 Connection conn = DriverManager.getConnection(url, user, pass);
+				conn.setAutoCommit(false);
+				String sql = "SELECT name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary FROM Player WHERE name = ?";
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setDouble(1, assistpg);
+				ResultSet rs = stmt.executeQuery();
+				if (rs.next()) {
+					String name = rs.getString(1);
+					String team = rs.getString(2);
+					String position = rs.getString(3);
+					Double ppg = rs.getDouble(4);
+					Double rpg = rs.getDouble(5);
+					Double apg = rs.getDouble(6);
+					Double fieldgoalpercentage = rs.getDouble(7);
+					Integer salary = rs.getInt(8);
+					
+					baller = new Baller(name, team, position, ppg, rpg, apg,
+							fieldgoalpercentage, salary);
+				}
+				rs.close();
+				stmt.close();
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		return baller;
 	}
 
 	@Override
-	public Baller getBallerByFieldGoalPercentage(Double fieldgoalpercentage) {
-		// TODO Auto-generated method stub
-		return null;
+	public Baller getBallerByFieldGoalPercentage(Double fgpercentage) {
+	     Baller baller = null;
+	     try { 
+	    	 Connection conn = DriverManager.getConnection(url, user, pass);
+				conn.setAutoCommit(false);
+				String sql = "SELECT name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary FROM Player WHERE name = ?";
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setDouble(1, fgpercentage);
+				ResultSet rs = stmt.executeQuery();
+				if (rs.next()) {
+					String name = rs.getString(1);
+					String team = rs.getString(2);
+					String position = rs.getString(3);
+					Double ppg = rs.getDouble(4);
+					Double rpg = rs.getDouble(5);
+					Double apg = rs.getDouble(6);
+					Double fieldgoalpercentage = rs.getDouble(7);
+					Integer salary = rs.getInt(8);
+					
+					baller = new Baller(name, team, position, ppg, rpg, apg,
+							fieldgoalpercentage, salary);
+				}
+				rs.close();
+				stmt.close();
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		return baller;
 	}
 
 	@Override
-	public Baller getBallerBySalary(Integer salary) {
-		// TODO Auto-generated method stub
-		return null;
+	public Baller getBallerBySalary(Integer salry) {
+	     Baller baller = null;
+	     try { 
+	    	 Connection conn = DriverManager.getConnection(url, user, pass);
+				conn.setAutoCommit(false);
+				String sql = "SELECT name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary FROM Player WHERE name = ?";
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setDouble(1, salry);
+				ResultSet rs = stmt.executeQuery();
+				if (rs.next()) {
+					String name = rs.getString(1);
+					String team = rs.getString(2);
+					String position = rs.getString(3);
+					Double ppg = rs.getDouble(4);
+					Double rpg = rs.getDouble(5);
+					Double apg = rs.getDouble(6);
+					Double fieldgoalpercentage = rs.getDouble(7);
+					Integer salary = rs.getInt(8);
+					
+					baller = new Baller(name, team, position, ppg, rpg, apg,
+							fieldgoalpercentage, salary);
+				}
+				rs.close();
+				stmt.close();
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		return baller;
 	}
 
 	@Override
 	public void addNBAballPlayer(Baller baller) {
-		// TODO Auto-generated method stub
+	     Baller baller = null;
+	     try { 
+	    	 Connection conn = DriverManager.getConnection(url, user, pass);
+				conn.setAutoCommit(false);
+				String sql = 
+						
+						
+					     
 		
 	}
 
@@ -209,6 +327,7 @@ public class BallerDaoDbImpl implements BallerDAO {
 	@Override
 	public List<Baller> getNBAballers() {  
 		Baller balla = null;
+		List<Baller> list = new ArrayList<Baller>();
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			String sql = "SELECT name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary FROM Player ";
@@ -226,7 +345,7 @@ public class BallerDaoDbImpl implements BallerDAO {
 				Integer salary = rs.getInt(8);
 				balla = new Baller(name, team, position, ppg, rpg, apg,
 						fieldgoalpercentage, salary);     
-				nbaplayers.add(balla);
+				list.add(balla);
 			}
 			rs.close();
 			stmt.close();
@@ -234,7 +353,7 @@ public class BallerDaoDbImpl implements BallerDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return nbaplayers;
+		return list;
 
 	}
 

@@ -26,6 +26,7 @@
             <ol>
                 <c:forEach items="${allballer}" var="s">
                     			<ul>
+				<li>${s.id}</li>
 				<li>${s.name}</li>
 				<li>${s.team}</li>
 				<li>${s.position}</li>
