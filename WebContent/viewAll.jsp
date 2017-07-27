@@ -26,7 +26,7 @@
             <ol>
                 <c:forEach items="${allballer}" var="s">
                     			<ul>
-				<li>${s.id}</li>
+				<li>ID: ${s.id}</li>
 				<li>${s.name}</li>
 				<li>${s.team}</li>
 				<li>${s.position}</li>
@@ -46,6 +46,8 @@
                                <input type="hidden" name="apg" value="${s.apg}" /> 
                                <input type="hidden" name="fieldgoalpercentage" value="${s.fieldgoalpercentage}" /> 
                                <input type="hidden" name="salary" value="${s.salary}" /> 
+                               <input type="hidden" name="id" value="${ s.id}">${s.id }<br>
+						                     <input type="text" name="id" placeholder="Enter baller's ID above to delete player!" style="width: 38%">
                                <input type="submit" value="RemovePlayer" class="submit"/><br><br>
                     </form>
                 </c:forEach>

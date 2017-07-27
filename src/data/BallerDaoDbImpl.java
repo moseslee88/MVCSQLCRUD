@@ -33,7 +33,7 @@ public class BallerDaoDbImpl implements BallerDAO {
 
 	@Override
 	public List<Baller> getBallerByTeam(String teem) {
-		List<Baller> nbaplayers = null;
+        List<Baller> nbaplayersbyteam = new ArrayList<>();
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false);  //STARTS the Transaction
@@ -53,7 +53,7 @@ public class BallerDaoDbImpl implements BallerDAO {
 				
 				Baller baller = new Baller(name, team, position, ppg, rpg, apg,
 						fieldgoalpercentage, salary);
-				nbaplayers.add(baller);
+				nbaplayersbyteam.add(baller);
 			}
 			rs.close();
 			stmt.close();
@@ -62,7 +62,7 @@ public class BallerDaoDbImpl implements BallerDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return nbaplayers;
+		return nbaplayersbyteam;
 	}
 	
 
@@ -304,14 +304,59 @@ public class BallerDaoDbImpl implements BallerDAO {
 
 		return baller;
 	}
+	
+	
+	
 
 	@Override
 	public void addNBAballPlayer(Baller baller) {
-	     Baller baller = null;
-	     try { 
-	    	 Connection conn = DriverManager.getConnection(url, user, pass);
-				conn.setAutoCommit(false);
-				String sql = 
+		Connection conn = null; // here I instantiated a Connection object
+
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			conn.setAutoCommit(false); // START TRANSACTION
+			String sql = "INSERT INTO Player (name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary) "
+					+ " VALUES (?,?,?,?,?,?,?,?)";  //8 fields
+
+			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, baller.getName());
+			stmt.setString(2, baller.getTeam());
+			stmt.setString(3, baller.getPosition());
+			stmt.setDouble(4, baller.getPpg());
+			stmt.setDouble(5, baller.getRpg());
+			//stmt.setDouble(5, 8.99);
+			stmt.setDouble(6, baller.getApg());
+			stmt.setDouble(7, baller.getFieldgoalpercentage());
+			stmt.setInt(8, baller.getSalary());
+
+			//stmt.setInt(10, 1);   DONT NEED
+			int updateCount = stmt.executeUpdate();
+			if (updateCount == 1) {
+				ResultSet keys = stmt.getGeneratedKeys();
+				if (keys.next()) {
+					
+//					nbaplayers.set(keys.getInt(updateCount), baller); 
+//					
+//					nbaplayers.add(baller);  //load the Array List with NBA ballplayers
+				} else {
+					baller = null;
+				}
+				System.out.println(baller);
+
+				stmt.close();
+				conn.commit(); //COMMIT TRANSACTION --this line of code ensures this film object gets added to mySQL database
+				conn.close();
+			  }
+		}catch (SQLException sqle) {
+				    sqle.printStackTrace();
+				    if (conn != null) {
+				      try { conn.rollback(); }
+				      catch (SQLException sqle2) {
+				        System.err.println("Error trying to rollback");
+				      }
+				    }  
+				    throw new RuntimeException("Error inserting basketball baller " + baller);
+		}
 						
 						
 					     
@@ -319,8 +364,28 @@ public class BallerDaoDbImpl implements BallerDAO {
 	}
 
 	@Override
-	public void deleteNBAballPlayer(Baller baller) {
-		// TODO Auto-generated method stub
+	public void deleteNBAballPlayer(int id) {
+	    Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url, user, pass);
+            conn.setAutoCommit(false); // START TRANSACTION
+            String sql = "DELETE FROM Player WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            int updateCount = stmt.executeUpdate();
+            stmt.close();
+            conn.commit(); // COMMIT TRANSACTION
+            conn.close();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException sqle2) {
+                    System.err.println("Error trying to rollback");
+                }
+            }
+        }
 		
 	}
 
@@ -330,20 +395,21 @@ public class BallerDaoDbImpl implements BallerDAO {
 		List<Baller> list = new ArrayList<Baller>();
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "SELECT name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary FROM Player ";
+			String sql = "SELECT id, name, team, position, Pts_per_game, rebounds_per_game, assists_per_game, fieldgoalpercentage, salary FROM Player ";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			//stmt.setString(1, "%" + key + "%");   NO Input variables or input question marks so no stmt needed
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				String name = rs.getString(1);
-				String team = rs.getString(2);
-				String position = rs.getString(3);
-				Double ppg = rs.getDouble(4);
-				Double rpg = rs.getDouble(5);
-				Double apg = rs.getDouble(6);
-				Double fieldgoalpercentage = rs.getDouble(7);
-				Integer salary = rs.getInt(8);
-				balla = new Baller(name, team, position, ppg, rpg, apg,
+				int id= rs.getInt(1);
+				String name = rs.getString(2);
+				String team = rs.getString(3);
+				String position = rs.getString(4);
+				Double ppg = rs.getDouble(5);
+				Double rpg = rs.getDouble(6);
+				Double apg = rs.getDouble(7);
+				Double fieldgoalpercentage = rs.getDouble(8);
+				Integer salary = rs.getInt(9);
+				balla = new Baller(id, name, team, position, ppg, rpg, apg,
 						fieldgoalpercentage, salary);     
 				list.add(balla);
 			}
@@ -361,8 +427,6 @@ public class BallerDaoDbImpl implements BallerDAO {
 	
 
 }
-
-
 
 
 

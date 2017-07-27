@@ -13,7 +13,7 @@ public interface BallerDAO {
 	public Baller getBallerBySalary(Integer salary);
 
 	public void addNBAballPlayer(Baller baller);
-	public void deleteNBAballPlayer(Baller baller);
+	public void deleteNBAballPlayer(int id);
 	public List<Baller> getNBAballers();
 	//public void persistThing(List<Baller> nbaplayers);
 }

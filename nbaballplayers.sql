@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Player` ;
 
 CREATE TABLE IF NOT EXISTS `Player` (
-  `id` INT NOT NULL,
+  `id` INT NULL,
   `name` VARCHAR(45) NOT NULL,
   `team` VARCHAR(45) NULL,
   `position` VARCHAR(45) NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `Player` (
   `assists_per_game` DOUBLE NOT NULL,
   `fieldgoalpercentage` DOUBLE NULL,
   `salary` INT NULL,
-  `Team_id` INT NOT NULL,
+  `Team_id` INT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_Player_Team`
     FOREIGN KEY (`Team_id`)

@@ -1,6 +1,9 @@
 package data;
 
 public class Baller {
+	private int id;
+	
+	
 	private String name; 
 	private String team;
 	private String position;
@@ -13,9 +16,9 @@ public class Baller {
 	public Baller() {
 	}
 
-	public Baller(String name, String team, String position, Double ppg, Double rpg, Double apg,
+	public Baller(int id, String name, String team, String position, Double ppg, Double rpg, Double apg,
 			Double fieldgoalpercentage, Integer salary) {
-		super();
+		this.id=id;
 		this.name = name;
 		this.team = team;
 		this.position = position;
@@ -26,6 +29,24 @@ public class Baller {
 		this.salary = salary;
 	}
 	
+	public Baller(String name, String team, String position, Double ppg, Double rpg, Double apg,
+			Double fieldgoalpercentage, Integer salary) {
+		this.name = name;
+		this.team = team;
+		this.position = position;
+		this.ppg = ppg;
+		this.rpg = rpg;
+		this.apg = apg;
+		this.fieldgoalpercentage = fieldgoalpercentage;
+		this.salary = salary;
+	}
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -97,7 +118,7 @@ public class Baller {
 				.append(position).append(", ppg=").append(ppg).append(", rpg=").append(rpg).append(", apg=").append(apg)
 				.append(", fieldgoalpercentage=").append(fieldgoalpercentage).append(", salary=").append(salary)
 				.append("]");
-		return builder.toString();
+		return builder.toString();  
 	}
 
 }

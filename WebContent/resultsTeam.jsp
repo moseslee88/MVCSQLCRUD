@@ -105,7 +105,7 @@
 				<li>${s.rpg} rebounds per game</li>
 				<li>${s.apg} assists per game</li>
 				<li>${s.fieldgoalpercentage} Field Goal %</li>
-				<li>${s.salary} dollars annually</li>
+				<li>${s.salary} dollars annually</li><br><br>
 			</c:forEach>
 			</ul>
 		</c:when>

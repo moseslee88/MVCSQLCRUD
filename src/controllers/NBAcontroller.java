@@ -100,9 +100,9 @@ public ModelAndView gotBallPlayerandAddtoList(Baller baller) {
 		}   */
 		
 		@RequestMapping(path = "PlayerDeleted.do", params = {"name","team","position", "ppg", "rpg", "apg", "fieldgoalpercentage", "salary"}, method = RequestMethod.POST)
-		public ModelAndView deleteFromList(@RequestParam("name") String a, @RequestParam("team") String b, @RequestParam("position") String c, @RequestParam("ppg") String d, @RequestParam("rpg") String e, @RequestParam("apg") String f, @RequestParam("fieldgoalpercentage") String g, @RequestParam("salary") String h, Baller baller, RedirectAttributes redir, HttpSession session) {
+		public ModelAndView deleteFromList(@RequestParam("id") int id, @RequestParam("name") String a, @RequestParam("team") String b, @RequestParam("position") String c, @RequestParam("ppg") String d, @RequestParam("rpg") String e, @RequestParam("apg") String f, @RequestParam("fieldgoalpercentage") String g, @RequestParam("salary") String h, Baller baller, RedirectAttributes redir, HttpSession session) {
 			nbaDao.getNBAballers();
-			nbaDao.deleteNBAballPlayer(baller);
+			nbaDao.deleteNBAballPlayer(id);
 			
 			ModelAndView mv = new ModelAndView();
 			redir.addFlashAttribute("ballerlist", nbaDao.getNBAballers());
@@ -111,6 +111,23 @@ public ModelAndView gotBallPlayerandAddtoList(Baller baller) {
 			return mv;
 			
 		}
+		
+//		@RequestMapping(path = "PlayerDeleted.do", params = {"name","team","position", "ppg", "rpg", "apg", "fieldgoalpercentage", "salary"}, method = RequestMethod.POST)
+//		public ModelAndView test(BallerDTO ballerdto) {
+//			
+//			Baller b = new Baller();
+//			b.setApg(ballerdto.getApg());
+//			b.setRpg(ballerdto.getRpg());
+//			dao.addBaller(b);
+//			Baller b1 = new Baller();
+//			b1.setApg(ballerdto.getApg1());
+//			dao.addBaller(b1);
+//			
+//			
+//			ModelAndView mv = new ModelAndView();
+//			return mv;
+//			
+//		}
 		
 }
 		
